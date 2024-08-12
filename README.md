@@ -13,6 +13,9 @@
   npx prisma migrate dev
   npx prisma generate
   npx prisma studio
+  yarn add bcryptjs
+  yarn add jsonwebtoken
+  npx prisma migrate dev --name "add-user-model"
 ```
 
 ## Queries and Mutations
