@@ -1,43 +1,13 @@
-// let links = [
-//   {
-//     id: "link-0",
-//     url: "howtographql.com",
-//     description: "Fullstack tutorial for GraphQL",
-//   },
-// ];
+const Query = require("./resolvers/Query");
+const Mutation = require("./resolvers/Mutation");
+const User = require("./resolvers/User");
+const Link = require("./resolvers/Link");
 
 const resolvers = {
-  Query: {
-    info: () => `This is the API with GraphQL, Node.js, Prisma, and SQLite
-`,
-    feed: async (parent, args, context) => {
-      return context.prisma.link.findMany();
-    },
-    // feed: () => links,
-  },
-  Mutation: {
-    post: async (parent, args, context) => {
-      const { url, description } = args;
-      const newLink = context.prisma.link.create({
-        data: {
-          url,
-          description,
-        },
-      });
-
-      return newLink;
-      // let idCount = links.length;
-
-      // const link = {
-      //   id: `link-${idCount++}`,
-      //   description: args.description,
-      //   url: args.url,
-      // };
-      // links.push(link);
-
-      // return link;
-    },
-  },
+  Query,
+  Mutation,
+  User,
+  Link,
 };
 
 module.exports = resolvers;
