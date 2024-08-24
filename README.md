@@ -9,7 +9,7 @@
 ![Playground Sample 2](./assets/image_2.png)
 ![Playground Sample 3](./assets/image_3.png)
 
-## Comandos usados
+## BASH Commands
 
 ```bash
   yarn init
@@ -145,6 +145,6 @@ subscription Vote {
 }
 ```
 
-[Link do Vídeo - Pt. 1](https://www.youtube.com/watch?v=YQ8CZoGjxD0)
-[Link do Vídeo - Pt. 2](https://www.youtube.com/watch?v=Hljmp4IrYN8)
-[Link do Vídeo - Pt. 3](https://www.youtube.com/watch?v=uLRpnGbSR5A)
+- [Link do Vídeo - Pt. 1](https://www.youtube.com/watch?v=YQ8CZoGjxD0)
+- [Link do Vídeo - Pt. 2](https://www.youtube.com/watch?v=Hljmp4IrYN8)
+- [Link do Vídeo - Pt. 3](https://www.youtube.com/watch?v=uLRpnGbSR5A)
