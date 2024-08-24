@@ -1,6 +1,13 @@
 # Build a GraphQL Apollo Server with Node.js, Prisma, and SQLite
 
-![Playground Sample](./assets/image_1.png)
+### Sample Mutation and Query
+
+![Playground Sample 1](./assets/image_1.png)
+
+### Sample Listeners
+
+![Playground Sample 2](./assets/image_2.png)
+![Playground Sample 3](./assets/image_3.png)
 
 ## Comandos usados
 
@@ -16,23 +23,25 @@
   yarn add bcryptjs
   yarn add jsonwebtoken
   npx prisma migrate dev --name "add-user-model"
+  npx prisma migrate dev --name "add-vote-model"
+  npx prisma generate
 ```
 
 ## Queries and Mutations
 
 ```graphql
 mutation CreateData {
-  post(url: "prisma.io", description: "Prisma is ...") {
+  post(url: "__URL__", description: "__DESCRIPTION__") {
     id
     description
     url
   }
 }
 
-# Query Variables
-# {
-#   "Authorization": "Bearer eyJ..."
-# }
+# HTTP Headers
+{
+  "Authorization": "Bearer __TOKEN__"
+}
 
 # --------------------------
 
@@ -47,7 +56,7 @@ query ReturnData {
 # --------------------------
 
 mutation SignUp {
-  signup(name: "Anderson", email: "anderson@mail.com", password: "123456") {
+  signup(name: "__NAME__", email: "__EMAIL__", password: "__PASSWORD__") {
     token
     user {
       id
@@ -59,7 +68,7 @@ mutation SignUp {
 # --------------------------
 
 mutation Login {
-  login(email: "anderson@mail.com", password: "123456") {
+  login(email: "__EMAIL__", password: "__PASSWORD__") {
     token
     user {
       email
@@ -80,11 +89,62 @@ query FeedByUserId {
   }
 }
 
-# Query Variables
-# {
-#   "Authorization": "Bearer eyJ..."
-# }
+# HTTP Headers
+{
+  "Authorization": "Bearer __TOKEN__"
+}
+
+# --------------------------
+
+mutation Vote {
+  vote(linkId: "__LINK_ID__") {
+    link {
+      url
+      description
+    }
+    user {
+      name
+      email
+    }
+  }
+}
+
+# HTTP Headers
+{
+  "Authorization": "Bearer __TOKEN__"
+}
+
+# --------------------------
+
+# LISTENERS
+subscription Subscription {
+  newLink {
+    id
+    url
+    description
+    postedBy {
+      id
+      name
+      email
+    }
+  }
+}
+
+subscription Vote {
+  newVote {
+    id
+    link {
+      url
+      description
+    }
+    user {
+      name
+      email
+    }
+  }
+}
 ```
 
 [Link do Vídeo - Pt. 1](https://www.youtube.com/watch?v=YQ8CZoGjxD0)
 [Link do Vídeo - Pt. 2](https://www.youtube.com/watch?v=Hljmp4IrYN8)
+[Link do Vídeo - Pt. 3](https://www.youtube.com/watch?v=uLRpnGbSR5A)
