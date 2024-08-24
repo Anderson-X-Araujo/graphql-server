@@ -27,7 +27,7 @@
   npx prisma generate
 ```
 
-## Queries and Mutations
+## Queries, Mutations ans Subscriptions
 
 ```graphql
 mutation CreateData {
@@ -43,7 +43,7 @@ mutation CreateData {
   "Authorization": "Bearer __TOKEN__"
 }
 
-# --------------------------
+# Return Data Feed
 
 query ReturnData {
   feed {
@@ -53,7 +53,50 @@ query ReturnData {
   }
 }
 
-# --------------------------
+# Return Data Feed Filtered
+
+query ReturnFilteredData {
+  feed(filter: "__FILTER__") {
+    id
+    description
+    url
+    postedBy {
+      id
+      name
+    }
+  }
+}
+
+# Return Data Feed Filtered and With Pagination
+
+query ReturnFilteredAndPaginationData {
+  feed(filter: "__FILTER__", skip: 1, take: 1) {
+    id
+    description
+    url
+    postedBy {
+      id
+      name
+    }
+  }
+}
+
+# Return Data Feed Filtered, With Pagination and Sorted
+
+query ReturnFilteredAndPaginationAndSortedData {
+  feed(filter: "", skip: 2, take: 2, orderBy: {description: asc}) {
+    id
+    description
+    url
+    postedBy {
+      id
+      name
+    }
+  }
+}
+
+
+# SignUp
 
 mutation SignUp {
   signup(name: "__NAME__", email: "__EMAIL__", password: "__PASSWORD__") {
@@ -65,7 +108,7 @@ mutation SignUp {
   }
 }
 
-# --------------------------
+# Login
 
 mutation Login {
   login(email: "__EMAIL__", password: "__PASSWORD__") {
@@ -80,7 +123,7 @@ mutation Login {
   }
 }
 
-# --------------------------
+# Return Feed Data By User ID
 
 query FeedByUserId {
   feedByCurrentUserId {
@@ -94,7 +137,7 @@ query FeedByUserId {
   "Authorization": "Bearer __TOKEN__"
 }
 
-# --------------------------
+# Vote By Link ID
 
 mutation Vote {
   vote(linkId: "__LINK_ID__") {
@@ -114,10 +157,9 @@ mutation Vote {
   "Authorization": "Bearer __TOKEN__"
 }
 
-# --------------------------
+# Subscription To Link (Listener)
 
-# LISTENERS
-subscription Subscription {
+subscription Link {
   newLink {
     id
     url
@@ -129,6 +171,8 @@ subscription Subscription {
     }
   }
 }
+
+# Subscription To Vote (Listener)
 
 subscription Vote {
   newVote {
@@ -145,6 +189,7 @@ subscription Vote {
 }
 ```
 
-- [Link do Vídeo - Pt. 1](https://www.youtube.com/watch?v=YQ8CZoGjxD0)
-- [Link do Vídeo - Pt. 2](https://www.youtube.com/watch?v=Hljmp4IrYN8)
-- [Link do Vídeo - Pt. 3](https://www.youtube.com/watch?v=uLRpnGbSR5A)
+- [Video Link - Pt. 1](https://www.youtube.com/watch?v=YQ8CZoGjxD0)
+- [Video Link - Pt. 2](https://www.youtube.com/watch?v=Hljmp4IrYN8)
+- [Video Link - Pt. 3](https://www.youtube.com/watch?v=uLRpnGbSR5A)
+- [Video Link - Pt. 4](https://www.youtube.com/watch?v=yUBaIjNAKLw)
